@@ -14,6 +14,11 @@ public class BB_Scoreboard_App {
      * The second Team playing. 
      */
     private Team awayTeam;
+
+	/**
+	 * Team with more points
+	 */
+	private Team winnerTeam;
     
     /**
      * Use to display a double dash line
@@ -135,6 +140,7 @@ public class BB_Scoreboard_App {
     			playGame = false;
     			this.updateScoreboard();
         		System.out.println();
+				this.determineWinner();
         		break;
         		
     		case 1:
@@ -191,7 +197,19 @@ public class BB_Scoreboard_App {
 		System.out.println(SINGLE_LINE);
 			
     } // end of updateTeam
-    
+
+	private void determineWinner() {
+		if ((this.homeTeam.getTeamPoints() - this.awayTeam.getTeamPoints()) != 0) {
+			if (this.awayTeam.getTeamPoints() > this.homeTeam.getTeamPoints()) {
+				this.winnerTeam = this.awayTeam;
+			} else {
+				this.winnerTeam = this.homeTeam;
+			}
+			System.out.println(this.winnerTeam.getName() + " wins!");
+		} else {
+			System.out.println("It's a tie!");
+		}
+	}
     /**
      * Update the player's stats
      * 
